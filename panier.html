@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <!--CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    
+    <script src="js/panier.js" defer></script>
+    
+     <title>Orinoco-Panier</title>
+
+ </head>
+
+ <body>
+  <header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col navbar navbar-expand">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="nav__logo">ORINOCO</h1>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navbarContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="panier.html"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+  </header>
+
+    <main>
+         <div class="container content-section">
+          <h2 class="col-12 text-center section-header">VOTRE PANIER</h2>
+          
+          <div class=" col-12 text-center cart-row" id="panier-section">
+            <div class="panier-recap" id="panier-produit"><span class="panier-title">Produit</span></div>
+            <div class="panier-recap" id="panier-option"><span class="panier-title">Couleur</span></div>
+            <div class="panier-recap" id="panier-prix"><span class="panier-title">Prix</span></div>
+            <div class="panier-recap" id="panier-bouton"><span class="panier-title"></span></div>
+        </div>
+          <!--<div class="cart-row">
+              <span class="cart-item cart-header cart-column">PRODUIT</span>
+              <span class="cart-price cart-header cart-column">PRIX</span>
+          </div>
+          <div class="cart-items">
+              
+              
+          </div>-->
+          <div id="contenu-total-price" class="panier-totalPrice text-center"></div>   
+              <!--<strong class="cart-total-title">Total</strong>
+              <span class="cart-total-price">0€</span>-->
+          
+              </div>
+
+
+
+
+
+
+      <section class="formulaire-validation">
+      <div class="formulaire-section">
+        <h2 class="formulaire-title">Contact pour la commande</h2>
+        <form class="formulaire" method="post" name="formContact">
+
+          <div class="form-groupe">
+            <label class="formulaire-label" for="nom">Nom : </label>
+            <input class="formulaire-input" type="text" name="nom" id="nom" placeholder="Dupont" required>
+            <!--<img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">-->
+            <span class="message-alerte" id="bigNom"></span>
+          </div>  
+          <div class="form-groupe">
+            <label class="formulaire-label" for="prenom">Prénom : </label>
+            <input class="formulaire-input" type="text" name="prenom" id="prenom" placeholder="Jean" required>
+            <!--<img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">-->
+            <span class="message-alerte" id="bigPrenom"></span>
+          </div>
+          <div class="form-groupe">
+            <label class="formulaire-label" for="email">Email : </label>
+            <input class="formulaire-input" type="email" id="email" placeholder="jean.dupont@xxxxx.com" required>
+            <!--<img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">-->
+            <span class="message-alerte" id="bigEmail"></span>
+          </div>
+          <div class="form-groupe">
+            <label class="formulaire-label" for="adresse">Adresse : </label>
+            <input class="formulaire-input" type="text" name="adresse" id="adresse" placeholder="10 rue bellevue" required>
+            <!--<img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">-->
+            <span class="message-alerte" id="bigAdresse"></span>
+          </div>
+          <div class="form-groupe">
+            <label class="formulaire-label" for="ville">Ville : </label>
+            <input class="formulaire-input" type="text" name="ville" id="ville" placeholder="Paris" required>
+            <!--<img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">-->
+            <span class="message-alerte" id="bigVille"></span>
+          </div>
+          <button class="btn btn-primary btn-purchase" type="submit">COMMANDER</button>
+        </form>
+        <div class="erreur"></div>
+    </div>
+
+
+  </section>
+
+      <!--<div class="col-12 text-center" id="formulaire-section">
+        <h2 class="formulaire-title">Contact pour la livraison</h2>
+
+        <form class="formulaire" method="post" name="formContact">
+            
+              <label for="lastName">Nom</label>
+              <input type="text" class="form-control" id="utilisateur" required placeholder="Nom">
+              <img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">
+              <span class="message-alerte"></span>
+           
+            <div class="form-group">
+              <label for="Name">Prenom</label>
+              <input type="text" class="form-control" id="prenom" required placeholder="Prenom">
+              <img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">
+              <span class="message-alerte"></span>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="jeanne.marie@xxxxx.com" required>
+              <img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">
+              <span class="message-alerte"></span>
+            </div>
+            <div class="form-group">
+              <label for="Adresse">Adresse</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="11 rue des Panoyaux" required>
+              <img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">
+              <span class="message-alerte"></span>
+            </div>
+            <div class="form-group">
+              <label for="Ville">Adresse</label>
+              <input type="text" class="form-control" id="inputVille" placeholder="Paris" required>
+              <img src="ressources/success-green-check-mark.svg" alt="icone de validation" class="icone-verif">
+              <span class="message-alerte"></span>
+            </div>
+        </form>
+        </div>-->
+      
+    
+
+            <!--<div class="col-12 text-center" id="formulaire-section">
+                <h2 class="formulaire-title">Contact pour la livraison</h2>
+                
+                <form class="formulaire" method="post" name="formContact">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" required>
+                        
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="Prenom">Prenom</label>
+                        <input type="prenom" class="form-control" id="prenom" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputEmail">Email</label>
+                      <input type="email" class="form-control" id="inputEmail" placeholder="jeanne.marie@xxxxx.com" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputAddress">Adresse</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="11 rue des Panoyaux" required>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">Ville</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="Paris" required>
+                      </div>
+                      
+                      <div class="form-group col-md-6">
+                        <label for="inputZip">Code Postal</label>
+                        <input type="text" class="form-control" id="inputZip" placeholder="75020" required>
+                      </div>
+                    </div>
+                  </form>
+            </div>-->
+        
+    </main>
+
+    <footer>
+        <div class="bg-light mt-5">
+            <div class="container">
+              <div class="row pt-4 pb-3">
+                <div class="col">
+                  <ul class="list-inline text-center">
+                    <li class="list-inline-item"><a href="#">Conditions générales de ventes</a></li>
+                    <li class="list-inline-item">&middot;</li>
+                    <li class="list-inline-item"><a href="mailto:contact@orinoco.fr">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+     </footer>
+
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+     
+ </body>
+</html>
