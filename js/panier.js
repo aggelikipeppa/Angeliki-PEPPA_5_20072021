@@ -1,116 +1,113 @@
-//Récupération des données du localStorage
-
-let panier = localStorage.getItem("panier");
-panier = JSON.parse(panier);
-console.log(panier)
-
-//création et affichage du panier
-
-for (let i=0; i<panier.length; i++) {
-    addItemToCart(panier[i]);
-    //updateCartTotal()
-}
-
-//affichage du prix total
-
-totalPrice (panier);
+let panier = document.querySelector(".cart-panier__recap");
+let articleLocalStorage  = JSON.parse(localStorage.getItem("produit"));
 
 //Validation du formulaire
 let listeId = ['nom', 'prenom', 'email','adresse', 'ville'];
 let formValid = document.querySelector('.btn-purchase');
     
-formValid.addEventListener('click', validation);
+formValid.addEventListener('click', checkFormAndPostRequest);
 
-//fonction de création du contenu de la page
-function addItemToCart(index) {
-    let newElementTeddy = document.createElement('div');
-    let elementTeddy = document.getElementById('panier-produit');
+main();
 
-    newElementTeddy.classList.add('panier-detail');
-    newElementTeddy.classList.add('text-center');
-    elementTeddy.appendChild(newElementTeddy);
-
-    //création du contenu du produit panier
-
-    let teddyName = document.createElement('p');
-    teddyName.innerText = index.name;
-    newElementTeddy.appendChild(teddyName);
-
-    let teddyImg = document.createElement('img');
-    teddyImg.src = index.img;
-    teddyImg.classList.add('teddy-img');
-    newElementTeddy.appendChild(teddyImg);
-
-    //Ajoute l'option de couleur choisie
-
-    let newElementOption = document.createElement('div');
-    let elementOption = document.getElementById('panier-option');
-    elementOption.appendChild(newElementOption);
-
-    newElementOption.classList.add('panier-color');
-
-    let teddyColor = document.createElement('p');
-    teddyColor.innerText = index.color ? index.color : 'Aucune option';
+function main() {
+    addToCart();
+    updateCartTotal(articleLocalStorage);
     
-    newElementOption.appendChild(teddyColor);
-
-    //Ajoute le prix
-
-    let newElementPrice = document.createElement('div');
-    let elementPrice = document.getElementById('panier-prix');
-    elementPrice.appendChild(newElementPrice);
-
-    newElementPrice.classList.add('panier-price');
-
-    let price = document.createElement('p');
-    price.innerText = index.price.toLocaleString('fr-FR');
-    newElementPrice.appendChild(price);
-
-    //Ajoute le bouton supprimer
-
-    let newElementButton = document.createElement('div');
-    let elementButton = document.getElementById('panier-bouton');
-    elementButton.appendChild(newElementButton);
-
-    newElementButton.classList.add('panier-button');
-
-    let button = document.createElement('input');
-    button.id = 'bouton-supprimer';
-    button.type = 'button';
-    button.value = 'Supprimer'
-    newElementButton.appendChild(button);
-
-    //Fonction pour supprimer la ligne du produit
-    function deleteLigne() {
-    let panier = JSON.parse(localStorage.getItem('panier'));
-    panier.splice(index,1);
-    localStorage.setItem('panier', JSON.stringify(panier));
     
-    newElementPrice.remove();
-    newElementOption.remove();
-    newElementTeddy.remove();
-    newElementButton.remove();
-
-    totalPrice(panier);
-}
-button.addEventListener('click',deleteLigne);
+    
 }
 
-// fonction qui calcule le prix total et l'insère dans la page
+function addToCart(index) {
+    let test = document.querySelector(".width-to-empty-cart");
+    let cartPanier = document.querySelector(".cart-panier");
+    let emptyPanier = document.querySelector(".if-empty-cart");
 
-function totalPrice(panier) {
-    let totalPrice = 0;
-    for (let i=0; i<panier.length; i++) {
-        totalPrice = totalPrice + panier[i].price; 
-                console.log(totalPrice)
+    // Si le tableau copié du localStorage contient au moins un objet, on affiche le panier et on supprime le message d'erreur.
+    if (localStorage.getItem("produit")) {
+        cartPanier.style.display = "flex";
+        cartPanier.style.flexDirection = "column";
+        cartPanier.style.justifyContent = "space-around";
+        emptyPanier.style.display = "none";
+      }
+    
+    //On crée des div dans lequels on va ajouter les donnés du tableau, pour les objets qui sont deja dans le LocalStorage
+    for (let article in articleLocalStorage) {
+        let cartRow = document.createElement("div");
+        panier.insertBefore(cartRow, test);
+        cartRow.classList.add("cart-panier__recap__row", "product-row");
 
+        let articleName = document.createElement("div");
+        cartRow.appendChild(articleName);
+        articleName.classList.add("cart-panier__recap__title");
+        articleName.innerHTML = articleLocalStorage[article].name;
+
+        let articleColor = document.createElement("div");
+        cartRow.appendChild(articleColor);
+        articleColor.classList.add("cart-panier__recap__title", "title-color");
+        articleColor.innerHTML = articleLocalStorage[article].color;
+
+        let articleQuantity = document.createElement("div");
+        cartRow.appendChild(articleQuantity);
+        articleQuantity.classList.add("cart-panier__recap__title", "title-quantity");
+        articleQuantity.innerHTML = articleLocalStorage[article].quantity;
+
+        let articlePrice = document.createElement("div");
+        cartRow.appendChild(articlePrice);
+        articlePrice.classList.add("cart-panier__recap__title","data-price","price");
+        // Affichage du prix avec le formatage €
+        articlePrice.innerHTML = new Intl.NumberFormat("fr-FR", {
+        style: "currency",
+        currency: "EUR",
+      }).format(articleLocalStorage[article].price * articleLocalStorage[article].quantity);
+
+
+        //Ajoute le bouton supprimer
+
+        let newElementButton = document.createElement('div');
+        cartRow.appendChild(newElementButton);
+        newElementButton.classList.add("cart-panier__recap__title", "panier-button");
+
+        let button = document.createElement('input');
+        button.id = 'bouton-supprimer';
+        button.type = 'button';
+        button.value = 'Supprimer'
+        newElementButton.appendChild(button);  
+
+        //Fonction pour supprimer la ligne du produit
+
+        function removeCartItem () {
+            let articleLocalStorage = JSON.parse(localStorage.getItem("produit"));
+            articleLocalStorage.splice(index,1);
+            localStorage.setItem("produit", JSON.stringify(articleLocalStorage));
+            
+
+            articleName.remove();
+            articleColor.remove();
+            articleQuantity.remove();
+            articlePrice.remove();
+            newElementButton.remove();
+            
+
+            updateCartTotal(articleLocalStorage)
+           }
+        button.addEventListener('click', removeCartItem)
+   }
+}
+
+function updateCartTotal(articleLocalStorage) {
+    let total = 0;
+    let priceOfQuantity = document.querySelectorAll(".price");
+    
+    for (let k=0; k<articleLocalStorage.length; k++) {
+        total = total + articleLocalStorage[k].price; 
     }
-    let elementTotalPrice = document.getElementById('contenu-total-price');
-    elementTotalPrice.innerText = 'Le montant total de la commande est : ' + totalPrice.toLocaleString('fr-FR') + '€.';
-    localStorage.setItem("totalPriceConfirmation", totalPrice);
+
+    let totalPrice = document.querySelector(".total");
+    totalPrice.innerText = `Total : ` + total.toLocaleString('fr-FR') + '€';
+    localStorage.setItem("totalPriceConfirmation", total);
 };
-/*`${responses.price / 100}.00 €`;  
-`${data.price / 100}.00 €`*/
+
+
 //fonction qui met la première lettre en majuscule
 
 function capitalizeFirstLetter(string) {
@@ -118,7 +115,9 @@ function capitalizeFirstLetter(string) {
 }
 //fonction de validation du formulaire et envoie à l'API
 
-function  validation(event) {
+
+
+function checkFormAndPostRequest(event) {
     event.preventDefault();
     let allValid = true;
     for (i=0; i < listeId.length; i++) {
@@ -195,8 +194,3 @@ function  validation(event) {
         })
     }
 }
-
-    
-   
-
-
