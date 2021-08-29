@@ -12,9 +12,6 @@ main();
 function main() {
     addToCart();
     updateCartTotal(articleLocalStorage);
-    
-    
-    
 }
 
 function addToCart(index) {
