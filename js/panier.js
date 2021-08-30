@@ -77,7 +77,7 @@ function addToCart(index) {
             articleLocalStorage.splice(index,1);
             localStorage.setItem("produit", JSON.stringify(articleLocalStorage));
             
-
+console.log(articleLocalStorage)
             articleName.remove();
             articleColor.remove();
             articleQuantity.remove();
