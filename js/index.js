@@ -7,18 +7,14 @@ async function main() {
     }  
 }
 
-function getArticles() {
-    return fetch("http://localhost:3000/api/teddies")
-        .then(function(response) {
-            return response.json()
-
-        })
-        .then(function(articles) {
-            return articles
-        })
-        .catch(function(error) {
-            alert(error)
-        })
+async function getArticles() {
+    try {
+        const response = await fetch("http://localhost:3000/api/teddies");
+        const articles = await response.json();
+        return articles;
+    } catch (error) {
+        alert(error);
+    }
 }
 
 function displayArticle(article) {

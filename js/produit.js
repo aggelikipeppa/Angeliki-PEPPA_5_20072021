@@ -1,7 +1,7 @@
 //récupération de l'id de la page
 //renvoie un objet Location contenant des informations concernant l'URL actuelle du document et fournit des méthodes pour modifier cette URL.Cette propriété peut être utilisée pour changer une autre page.
 const queryString_url_id = window.location.search;
-//ΓΙΑ ΝΑ ΒΓΑΛΟΥΜΕ ΤΟ ?//
+
 //Retourner la premiere valeur associée au parametre de recherche donné//
 //L'opérateur new permet de créer une instance d'un certain type d'objet à partir du constructeur qui existe pour celui-ci (natif ou défini par l'utilisateur).
 const urlSearchParams = new URLSearchParams(queryString_url_id);
@@ -15,24 +15,19 @@ const id = urlSearchParams.get("id");
      
 })()
 
-
 function getArticleId() {
     return id
 }
 
-function getArticleData(articleId) {
-    return fetch(`http://localhost:3000/api/teddies/${articleId}`)
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function(articleData) {
-            return articleData
-        })
-        .catch(function(error) {
-            alert(error)
-        })
+async function getArticleData(articleId) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/teddies/${articleId}`);
+        const articleData = await response.json();
+        return articleData;
+    } catch (error) {
+        alert(error);
+    }
 }
-
 
 function hydratePage(article) {
     document.querySelector(".img").src = article.imageUrl;
@@ -43,7 +38,7 @@ function hydratePage(article) {
     //ajout de l'événement: choix de la couleur
 
     let colorSelect = document.getElementById("color-select");
-    for (let i = 0; i < article.colors.length; i++) {//La boucle for pour afficher toutes les options du produit
+    for (let i = 0; i < article.colors.length; i++) {//La boucle for pour afficher toutes les options couleur du produit
       let option = document.createElement("option");
       option.innerText = article.colors[i];
       colorSelect.appendChild(option);

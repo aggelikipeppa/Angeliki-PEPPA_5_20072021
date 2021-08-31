@@ -10,7 +10,6 @@ body{
 
 header, footer {
   background-color: #413e40;
- 
 }
 
 a {
@@ -19,11 +18,14 @@ a {
   color: #F3E9F1;
 }
 
+
+
 .footer-item {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   text-align: center;
 }
+
 .footer-item a {
   margin: 20px auto;
 }
@@ -84,10 +86,6 @@ main .products-container .products {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   }
 }
-
-
-
-
 
 main .products-container .products .product {
   position: relative;
@@ -195,9 +193,7 @@ main .products-container .products .product-details {
 }
 
 .container .peluche-card {
-  
-  background: #f4d7f5; 
- 
+  background: #f3d7f3; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,15 +201,6 @@ main .products-container .products .product-details {
   border-radius: 20px 20px 20px 20px;
   box-shadow: 0px 0px 10px 0px rgba(63, 63, 63, 0.49);
   width: 600px;
-  
-  /*display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 600px;
-  background: #dee9f7; #daf7a6
-  border-radius: 20px 20px 20px 20px;
-  box-shadow: 0px 0px 10px 0px rgba(63, 63, 63, 0.49);*/
 }
 
 .container .peluche-card__img img{
@@ -221,8 +208,8 @@ main .products-container .products .product-details {
   height: 250px;
   object-fit: cover;
   margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 5px;
-  
 }
 
 .container .peluche-card__infos__description {
@@ -243,6 +230,7 @@ main .products-container .products .product-details {
   display: flex;
   justify-content: space-around;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .container .peluche-card__infos__quantity {
@@ -265,13 +253,13 @@ main .products-container .products .product-details {
 
 .container .peluche-card__infos .peluche-card__infos__button {
   padding: 20px;
-  background: #e1bb80;
+  background: #900C3F;
   border-radius: 5px;
   border: solid 1px #352208;
 }
 
 .container .peluche-card__infos .back-to-home {
-  background: #d8d8d8;
+  background: #900C3F;
 }
 
 
@@ -282,7 +270,7 @@ main .products-container .products .product-details {
   justify-content: center;
   align-self: center;
   width: 100%;
-  background: #f4d7f5; ;
+  
 }
 
 .container-panier .cart-panier {
@@ -290,15 +278,14 @@ main .products-container .products .product-details {
   margin: 50px 15px;
   display: none;
   width: 1000px;
-  background: #dee9f7;
+  background: #f3d7f3;
   border-radius: 20px 20px 20px 20px;
   box-shadow: 0px 0px 10px 0px rgba(63, 63, 63, 0.49);
 }
 
 .container-panier .cart-panier__recap {
-  margin: 10px 0 10px 10px;
+  margin: 10px 10px 10px 10px;
   width: 90%;
-  background: #dee9f7;
 }
 
 .container-panier .cart-panier__recap__row {
@@ -309,12 +296,9 @@ main .products-container .products .product-details {
 }
 
 .container-panier .cart-panier__recap .first-line {
-  
   display: flex;
-  
-          justify-content: center;
-  
-      align-self: center;
+  justify-content: center;
+  align-self: center;
   font-size: 19px;
   text-decoration: underline;
 }
@@ -332,7 +316,6 @@ main .products-container .products .product-details {
   cursor: pointer;
   opacity: 0.7;
   font-size: 17px;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -349,6 +332,20 @@ main .products-container .products .product-details {
   background-color: #CC4C4C;
 }
 
+.btn-purchase {
+  display: block;
+  margin: 40px auto 80px auto;
+  font-size: 1.75em;
+}
+
+.btn-purchase:hover {
+  background: darkblue;
+}
+
+.btn-purchase:active {
+  background: darkcyan;
+
+}
 
 /*Panier*/
 
@@ -545,12 +542,13 @@ main .products-container .products .product-details {
   flex-shrink: 0;
   background: #fff;
   border-radius: 5px;
- 
+  border: solid 2px black;
+  margin-top: 50px;
+  padding-top: 50px;
 }
 h2 {
   text-align: center;
 }
-
 
 .form-groupe {
   position: relative;
