@@ -1,20 +1,24 @@
 main ();
 
 async function main() {
-    const articles = await getArticles() /*pour attend que la promesse est resolu*/
+    const articles = await getArticles() /*pour attendre que la promesse est resolu*/
     for (article of articles) {
         displayArticle(article)
     }  
 }
 
-async function getArticles() {
-    try {
-        const response = await fetch("http://localhost:3000/api/teddies");
-        const articles = await response.json();
-        return articles;
-    } catch (error) {
-        alert(error);
-    }
+function getArticles() {
+    return fetch("http://localhost:3000/api/teddies")
+        .then(function(response) {
+            return response.json()
+
+        })
+        .then(function(articles) {
+            return articles
+        })
+        .catch(function(error) {
+            alert(error)
+        })
 }
 
 function displayArticle(article) {

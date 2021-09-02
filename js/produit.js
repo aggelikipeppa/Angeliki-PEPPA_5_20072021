@@ -6,7 +6,6 @@ const queryString_url_id = window.location.search;
 //L'opérateur new permet de créer une instance d'un certain type d'objet à partir du constructeur qui existe pour celui-ci (natif ou défini par l'utilisateur).
 const urlSearchParams = new URLSearchParams(queryString_url_id);
 const id = urlSearchParams.get("id");
-//console.log(id);//
 
 ;(async () => {
     const articleId = getArticleId()

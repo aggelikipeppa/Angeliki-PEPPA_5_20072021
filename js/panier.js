@@ -1,6 +1,6 @@
 let panier = document.querySelector(".cart-panier__recap");
 let articleLocalStorage  = JSON.parse(localStorage.getItem("produit"));
-
+let i = 0
 //Validation du formulaire
 let listeId = ['nom', 'prenom', 'email','adresse', 'ville'];
 let formValid = document.querySelector('.btn-purchase');
@@ -57,7 +57,11 @@ function addToCart(index) {
         currency: "EUR",
       }).format(articleLocalStorage[article].price * articleLocalStorage[article].quantity);
 
-
+        
+        let index = document.createElement("div")
+        cartRow.appendChild(index);
+        index.innerHTML = i++;
+        index.style.display ='none';
         //Ajoute le bouton supprimer
 
         let newElementButton = document.createElement('div');
@@ -74,7 +78,9 @@ function addToCart(index) {
 
         function removeCartItem () {
             let articleLocalStorage = JSON.parse(localStorage.getItem("produit"));
-            articleLocalStorage.splice(index,1);
+            let position = index.innerHTML;
+            
+            articleLocalStorage.splice(position,1);
             localStorage.setItem("produit", JSON.stringify(articleLocalStorage));
             
 console.log(articleLocalStorage)
@@ -83,6 +89,7 @@ console.log(articleLocalStorage)
             articleQuantity.remove();
             articlePrice.remove();
             newElementButton.remove();
+            index.remove();
             
 
             updateCartTotal(articleLocalStorage)
