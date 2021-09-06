@@ -14,7 +14,7 @@ function main() {
     updateCartTotal(articleLocalStorage);
 }
 
-function addToCart(index) {
+function addToCart() {
     let test = document.querySelector(".width-to-empty-cart");
     let cartPanier = document.querySelector(".cart-panier");
     let emptyPanier = document.querySelector(".if-empty-cart");
@@ -103,12 +103,13 @@ function updateCartTotal(articleLocalStorage) {
     let priceOfQuantity = document.querySelectorAll(".price");
     
     for (let k=0; k<articleLocalStorage.length; k++) {
-        total = total + articleLocalStorage[k].price; 
+        total = total + (articleLocalStorage[k].price) * (articleLocalStorage[k].quantity); 
     }
 
     let totalPrice = document.querySelector(".total");
     totalPrice.innerText = `Total : ` + total.toLocaleString('fr-FR') + '€';
     localStorage.setItem("totalPriceConfirmation", total);
+    console.log(totalPrice)
 };
 
 

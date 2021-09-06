@@ -82,7 +82,7 @@ const ajoutArticleLocalStorage = () => {
     //ajout dans le tableau de l'objet avec les values choisi par l'utilisateur
     articleLocalStorage.push(optionsProduit); 
 
-    //la transformation en format JSON et l'envoyer dans la key "article_in_storage" du localStorage
+    //la transformation en format JSON et l'envoyer dans la key "produit" du localStorage
     localStorage.setItem("produit", JSON.stringify(articleLocalStorage));
 };
 
